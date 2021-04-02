@@ -165,8 +165,12 @@ print("Matrise A multiplisert med B [AB] = matrise C = ", C_matrise)
 
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
-M = np.loadtxt("data_oppg5.txt")
+script_dir = os.path.dirname(__file__)
+txt_file = os.path.join(script_dir, "data_oppg5.txt")
+
+M = np.loadtxt(txt_file)
 x = M[:,0]
 f = M[:,1]
 
