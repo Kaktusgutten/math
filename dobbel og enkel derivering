@@ -1,0 +1,22 @@
+"""
+Dato 03.04.2021
+Laget av Sebastian Tveito Benjaminsen
+"""
+
+import sympy as sym
+
+x = sym.Symbol("x")
+
+funksjon = input("Valgte funksjon: ")
+
+#Derivert 1 gang
+funksjon_derivert = sym.diff(funksjon, x)
+print("Den deriverte til funksjonen = ", funksjon_derivert)
+
+#Derivert 2xganger
+funksjon_dobbelderivert = sym.diff(sym.diff(funksjon, x))
+print("Den dobbel-deriverte til funksjonen = ", funksjon_dobbelderivert)
+
+#eksempler på funksjoner:
+#((-x**3)/6) + (1/4)*cos(2*x) + ((E**x)/100) + (3/2)*x**2
+# 2*x - 3*x**2 + 2
