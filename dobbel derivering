@@ -1,0 +1,10 @@
+import sympy as sym
+#import numpy as np
+
+
+x = sym.Symbol("x")
+funksjon = ((-x**3)/6) + (1/4)*sym.cos(2*x) + ((sym.E**x)/100) + (3/2)*x**2
+
+funksjon_dobbelderivert = sym.diff(sym.diff(funksjon, x))
+
+print(funksjon_dobbelderivert)
