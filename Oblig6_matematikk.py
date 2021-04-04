@@ -18,21 +18,13 @@ Laget av: Sebastian Tveito Benjaminsen
 """
 import numpy as np
 
-a11 = float(input("tall for rad: 1, kollonne: 1, = "))
-a12 = float(input("tall for rad: 1. kollonne: 2, = "))
-a21 = float(input("tall for rad: 2, kollonne: 1, = "))
-a22 = float(input("tall for rad: 2, kollonne: 2, = "))
-
 def determinant(A_mat):
     A_det = A_mat[0][0]*A_mat[1][1] - A_mat[1][0]*A_mat[0][1]
     #print(A_det)
     return A_det
 
-A_matrise = np.array([[a11, a12], [a21, a22]])
-A_adjungert_matrise = np.array([[a22, -a12], [-a21, a11]])
-
-#print(determinant(A_matrise))
-#print("Determinanten =", determinant(A_matrise))
+A_matrise = np.random.randint(-10, high=10, size=(2, 2), dtype='l')
+A_adjungert_matrise = np.array([[A_matrise[1][1], - A_matrise[0][1]], [-A_matrise[1][0], A_matrise[0][0]]])
 
 
 if determinant(A_matrise) != 0:
