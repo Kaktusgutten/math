@@ -69,7 +69,7 @@ else:
 """
 import numpy as np
 
-def determinat(A_mat):
+def determinant(A_mat):
     M11 = A_mat[1][1]*A_mat[2][2] - A_mat[2][1]*A_mat[1][2]
     M12 = A_mat[1][0]*A_mat[2][2] - A_mat[2][0]*A_mat[1][2]
     M13 = A_mat[1][0]*A_mat[2][1] - A_mat[2][0]*A_mat[1][1]
