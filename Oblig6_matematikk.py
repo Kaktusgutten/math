@@ -206,6 +206,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 a = np.array([1+2.7j, 3-4j, 5+6j, 1+0.5j, 0.3-4j, 5+1.6j, -1.1+2j, 5, 3.1-1.4j, 5+6j, -1-2j, 3j,])
+x_akse = a.real
+y_akse = a.imag
 
 avstand_origo_punkt = list()
 i = 0
@@ -220,12 +222,12 @@ index_nummer_for_minste_avstand_origo = avstand_origo_punkt.index(minste)
 
 Kompleksetall_svar = a[index_nummer_for_minste_avstand_origo]
 
-print("Det komplekse tallet som har kortest avstand til origo er ", Kompleksetall_svar, "hvor lengden unna er origo er ", np.round(minste, 4))
+print("Det komplekse tallet som har kortest avstand til origo er ", Kompleksetall_svar, "\n", 
+      "hvor lengden unna er origo er ", np.round(minste, 4),
+      "og koordinaten til punktet", "x = ", x_akse[index_nummer_for_minste_avstand_origo],
+      "y = ", y_akse[index_nummer_for_minste_avstand_origo])
 
 #Graf med alle punktene:
-x_akse = a.real
-y_akse = a.imag
-
 plt.plot(x_akse, y_akse, "bo")  # Punktene til de komplekse-tallene
 plt.plot(0, 0, "go")  # Origo
 plt.title("Grafen som viser koordinater til de komplekse-tallene")
@@ -233,5 +235,6 @@ plt.xlabel("Reelle tall")
 plt.ylabel("Imaginære tall")
 plt.grid()
 plt.show()
-print("Komplekse tall - koordinater:", *a, sep = "\n",)
+
+print("Komplekse tall - koordinater (x, y) ", "\n", np.column_stack((x_akse, y_akse)))
 """
