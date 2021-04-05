@@ -61,7 +61,7 @@ else:
 """
 import numpy as np
 
-def determinant(A_mat):
+def determinat(A_mat):
     M11 = A_mat[1][1]*A_mat[2][2] - A_mat[2][1]*A_mat[1][2]
     M12 = A_mat[1][0]*A_mat[2][2] - A_mat[2][0]*A_mat[1][2]
     M13 = A_mat[1][0]*A_mat[2][1] - A_mat[2][0]*A_mat[1][1]
@@ -129,7 +129,6 @@ funksjon_fjerdederivert = sym.diff(funksjon_trippelderivert, x)
 
 
 #Brukbare funksjoner i numpy
-
 derivert_to = sym.lambdify(x, funksjon_dobbelderivert)
 derivert_tre = sym.lambdify(x, funksjon_trippelderivert)
 derivert_fire = sym.lambdify(x, funksjon_fjerdederivert)
@@ -147,18 +146,14 @@ m = 10
 xh = 1
 
 for i in range(m):
-    xh = xh - derivert_tre(xh)/derivert_fire(xh)
+    xh = xh - derivert_tre(xh)/derivert_fire(xh) #Newtonsmetode
     #print(xh)
 
-print("Øvregrense for feil er", grense(xh), "X er", xh)
+print("Ovregrense = ", grense(xh), "\n", "Feilestimeringen_midtpunktsmetoden = ", xh)
 """
 
 # Oppg 5)
-
 """
-
-# IKKE FERDIG
-
 import numpy as np
 import matplotlib.pyplot as plt
 import os
@@ -170,41 +165,73 @@ M = np.loadtxt(txt_file)
 x = M[:,0]
 f = M[:,1]
 
-plt.figure(3)
-plt.plot(x, f, "r", linewidth = 4)
-plt.show()
-
-plt.figure(4)
+plt.figure(1)
 plt.plot(x, f, "r*", linewidth = 4)
+plt.title("data_oppg5")
+plt.xlabel("x-akse [x]")
+plt.ylabel("y-akse [f(x)]")
+plt.grid()
 plt.show()
 
+plt.figure(2)
+plt.plot(x, f, "r", linewidth = 4)
+plt.title("data_oppg5")
+plt.xlabel("x-akse [x]")
+plt.ylabel("y-akse [f(x)]")
+plt.grid()
+plt.show()
 
-funksjon = f
-
-# Informasjon om integralet
-n = 46 # antall delintervaller
-a = 0.0 # nedre grense
-b = 15.0 # ovre grense
-
-# Bredden til trapesene
+a = 0.0
+b = 15.0
+n = 46
 dx = (b-a)/n
+sum = 0
+ 
+# Utregning av Areal:
+#for i in range(0, n-1):
+    #sum += f[i]    
+    #sum += f[i+1]
 
-# Forste ledd
-x = x[0][0]
-T = f[0][0]
+#Tn = sum*dx/2
 
-# Beregner summen av arealene til trapesene
-for i in range (1,n):
-    x = x + dx
-    T = T + 2*funksjon
+for i in range(0, n-1):
+    sum += f[i]**2 + f[i]*f[i+1] + f[i+1]**2 #Et sigment
 
-# Siste ledd
-x = b
-T = T + funksjon
+Volum = (1/3)*np.pi*dx*(sum) 
+print("Volumet til funksjonen vist i graf: 'data_oppg5' er ",np.round(Volum, 2))
+"""
+# Oppg 6)
+"""
+import numpy as np
+import matplotlib.pyplot as plt
 
-# Ganger summen med bredden av delintervallene 
-T = T*dx/2
+a = np.array([1+2.7j, 3-4j, 5+6j, 1+0.5j, 0.3-4j, 5+1.6j, -1.1+2j, 5, 3.1-1.4j, 5+6j, -1-2j, 3j,])
 
-# Skriver ut resultatet
-print("Summen av arealene til trapesene hvis n =",n,"er ",T)
+avstand_origo_punkt = list()
+i = 0
+    
+for i in a:
+  avstand = np.sqrt(i.imag**2 + i.real**2) 
+  avstand_origo_punkt.append(avstand)
+
+minste = np.min(avstand_origo_punkt)
+
+index_nummer_for_minste_avstand_origo = avstand_origo_punkt.index(minste)
+
+Kompleksetall_svar = a[index_nummer_for_minste_avstand_origo]
+
+print("Det komplekse tallet som har kortest avstand til origo er ", Kompleksetall_svar, "hvor lengden unna er origo er ", np.round(minste, 4))
+
+#Graf med alle punktene:
+x_akse = a.real
+y_akse = a.imag
+
+plt.plot(x_akse, y_akse, "bo")  # Punktene til de komplekse-tallene
+plt.plot(0, 0, "go")  # Origo
+plt.title("Grafen som viser koordinater til de komplekse-tallene")
+plt.xlabel("Reelle tall")
+plt.ylabel("Imaginære tall")
+plt.grid()
+plt.show()
+print("Komplekse tall - koordinater:", *a, sep = "\n",)
 """
